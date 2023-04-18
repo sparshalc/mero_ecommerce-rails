@@ -1,0 +1,91 @@
+<style>
+    .content{
+    direction: ltr;
+    flex: 1;
+    padding: 2.5rem 2.5rem 1.5rem;
+    }
+    .img-fluid {
+        height: auto;
+        width: 200px;
+    }
+    span{
+     color: #fb611b;
+    }
+</style>
+<div class="content">
+<div class="card mb-3">
+    <div class="card-body text-center">
+        <%= image_tag(@current_user.image,class:"img-fluid rounded-circle mb-2")%>
+        <h4 class="card-title mb-0"><%= current_user.email %></h4>
+        <div class="text-muted mb-2"><%= current_user.roles.collect(&:name).join(', ') %></div>
+    </div>
+</div>
+
+<div class="row">
+
+    <div class="col-xl-6 col-md-6 mb-4">
+        <div class="card border-left-success shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                            Products Added</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="col-xl-6 col-md-6 mb-4">
+        <div class="card border-left-warning shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                            Total Customers</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"><%= User.all.count %></div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fas fa-smile fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="text text-center mt-3">
+    <h1 class="h3 mb-0 text-gray-500 shadow p-3">Manage <span> Users</span></h1></div>
+<div class="d-sm-flex flex-sm-column mt-4">
+    <div class="row flex-sm-fill">
+    <% @user.each do |x|%>
+        <div class="col-sm-4 mt-2">
+            <div class="card card-fluid">
+            <div class="card-body text-center">
+                <div class="avatar-parent-child">
+                <a  class="avatar avatar-lg rounded-circle">
+                    <% if x.image.attached? %>
+                        <%= image_tag(x.image, width:"82", height:"82", class:"rounded-circle")%>
+                    <% else %>
+                    <%= image_tag('img/user.png', width:"82", height:"82", class:"rounded-circle")%>
+                    <% end %>
+                </a>
+                <span class="avatar-child avatar-badge bg-success"></span>
+                </div>
+                <h5 class="h6 mt-4 mb-0"><%= x.email %></h5>
+                <a class="d-block text-sm text-muted mb-3">Joined <%= time_ago_in_words(x.created_at)+ ' ago'%></a>
+                <div class="d-flex justify-content-center px-4 gap-2">
+                    <%= button_to 'Delete User', admin_path(x.id), method: :delete, class:'btn btn-danger'%>
+                </div>
+            </div>
+            </div>
+        </div>
+    <% end %>
+    </div>
+  </div>
+</div>

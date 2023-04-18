@@ -19,6 +19,9 @@
                 <li><a class="dropdown-item" href="#">Electronics</a></li>
             </ul>
         </div>
+        <% if current_user.has_role? :admin%>
+        <li><%= link_to 'Dashboard', admin_index_path, class:"dropdown-item mx-4"%></li>
+        <% end %>
         </ul>
 
 
@@ -34,7 +37,7 @@
               <% else %>
               <%= image_tag('img/user.png', width:"32", height:"32", class:"rounded-circle")%>
             <% end %>
-            <ps class="text-muted">Admin</ps>
+            <ps class="text-muted"><%= current_user.roles.collect(&:name).join(', ') %></ps>
           </a>
           <ul class="dropdown-menu text-large">
             <li><%= link_to 'Edit', main_app.edit_user_registration_path,class:"dropdown-item"%></li>

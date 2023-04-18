@@ -8,6 +8,15 @@
     text-align: center;
     position: relative;
 }
+.alert-warning {
+    background-color: #cf480a !important;
+    color: white !important;
+    border: 0;
+    padding: 12px 5px;
+    margin: 0px 8px;
+    text-align: center;
+    position: relative;
+}
 button[type="button"]{
     color: white !important;
 }
@@ -19,7 +28,7 @@ i{
 }
 </style>
 <% if flash[:notice]%>
-    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+    <div class="alert alert-primary alert-dismissible fade show" role="alert">
         <%= flash[:notice]%>
         <i class="fa fa-close" type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></i>
     </div>
