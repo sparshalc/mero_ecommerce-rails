@@ -1,0 +1,58 @@
+<% if user_signed_in? %>
+<header class="p-3  border-bottom">
+    <div class="container">
+      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+        <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 link-body-emphasis text-decoration-none">
+          <%= image_tag('img/logo.png', width: '200px')%>
+        </a>
+
+        <ul class="nav col-12 col-lg-auto me-lg-auto mx-auto justify-content-center mb-md-0">
+            <li><a class="dropdown-item mx-4" href="/">Home</a></li>
+        <div class="dropdown nav col-12 col-lg-auto me-lg-auto mx-auto justify-content-center mb-md-0">
+            <a class="dropdown-item" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Categories
+            </a>
+            
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Mens Fashion</a></li>
+                <li><a class="dropdown-item" href="#">Women's Fashion</a></li>
+                <li><a class="dropdown-item" href="#">Electronics</a></li>
+            </ul>
+        </div>
+        </ul>
+
+
+
+        <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
+          <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
+        </form>
+
+        <div class="dropdown text-end">
+          <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+            <% if current_user.image.attached? %>
+              <%= image_tag(current_user.image, width:"32", height:"32", class:"rounded-circle")%>
+              <% else %>
+              <%= image_tag('img/user.png', width:"32", height:"32", class:"rounded-circle")%>
+            <% end %>
+            <ps class="text-muted">Admin</ps>
+          </a>
+          <ul class="dropdown-menu text-large">
+            <li><%= link_to 'Edit', main_app.edit_user_registration_path,class:"dropdown-item"%></li>
+            <li> <%= button_to 'Logout',main_app.destroy_user_session_path,class:'dropdown-item text-danger',method: :delete%></li>
+
+          </ul>
+        </div>
+      </div>
+    </div>
+</header>
+<% else %>
+<header class="p-3  border-bottom">
+  <div class="container">
+    <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+      <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 link-body-emphasis text-decoration-none">
+        <%= image_tag('img/logo.png', width: '300px')%>
+      </a>
+    </div>
+  </div>
+</header>
+<% end %>

@@ -1,0 +1,69 @@
+<style>
+.card-img-top{
+    border-radius: 15px;
+    height: 300px;
+    width: auto;
+}
+.carousel-inner{
+    border-radius: 40px;
+    padding: 2px 2px;
+    height: 60vh;
+}
+.flex{
+    display: flex;
+}
+.card{
+    margin-left:12px;
+    height: 500px;
+    width: auto;
+    border: 0;
+}
+span{
+    color: #fb611b;
+}
+.d-block{
+    object-fit: contain;
+}
+</style>
+
+ <!-- Carousel -->
+<div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+    <div class="carousel-item active">
+        <%= image_tag('img/audi.jpg', class: "d-block w-100")%>
+
+    </div>
+    <div class="carousel-item">
+        <%= image_tag('img/bmw.jpg', class: "d-block w-100")%>
+    </div>
+    <div class="carousel-item">
+        <%= image_tag('img/tesla.jpg', class: "d-block w-100")%>
+    </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+    </button>
+</div>
+
+<!-- After Carousel -->
+<div class="text mt-5">
+    <h1 class="display-5 text-center border-bottom "><span> Associated </span> Brands</h1>
+</div>
+<div class="container flex mt-4">
+    <div class="card" style="width: 25rem;">
+        <%= image_tag('img/nb.png', class: 'card-img-top shadow')%>
+    </div>
+    <div class="card " style="width: 25rem;">
+        <%= image_tag('img/nike.jpg', class: 'card-img-top shadow')%>
+    </div>
+    <div class="card" style="width: 25rem;">
+        <%= image_tag('img/prada.jpg', class: 'card-img-top shadow')%>
+    </div>
+</div>
+
+

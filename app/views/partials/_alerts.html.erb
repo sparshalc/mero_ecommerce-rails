@@ -1,0 +1,36 @@
+<style>
+.alert {
+    background-color: #fb611b !important;
+    color: white !important;
+    border: 0;
+    padding: 12px 5px;
+    margin: 0px 8px;
+    text-align: center;
+    position: relative;
+}
+button[type="button"]{
+    color: white !important;
+}
+i{
+    position: absolute;
+    right: 12px;
+    bottom: 15px;
+    width: 45px;
+}
+</style>
+<% if flash[:notice]%>
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <%= flash[:notice]%>
+        <i class="fa fa-close" type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></i>
+    </div>
+<% end %>
+<% if flash[:alert]%>
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <%= flash[:alert]%>
+        <i class="fa fa-close" type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></i>
+    </div>
+<% end %>
+<script>
+    const alertList = document.querySelectorAll('.alert')
+    const alerts = [...alertList].map(element => new bootstrap.Alert(element))
+</script>
