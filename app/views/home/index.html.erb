@@ -25,6 +25,71 @@ span{
     object-fit: contain;
 }
 </style>
+<style>
+  .product-grid{
+      background-color: #fff;
+      font-family: 'Work Sans', sans-serif;
+      text-align: center;
+      transition: all 0.3s ease 0s;
+  }
+  .product-grid:hover{ box-shadow:  0 0 20px -10px rgba(237,29,36,0.3); }
+  .product-grid .product-image{
+      overflow: hidden;
+      position: relative;
+      transition: all 0.3s ease 0s;
+  }
+  .product-grid:hover .product-image{ border-radius: 0 0 30px 30px; }
+  .product-grid .product-image a.image{ display: block; }
+  .product-grid .product-image img{
+      width: 100%;
+      height: auto;
+  }
+  .product-image .pic-1{
+      backface-visibility: hidden;
+      transition: all 0.5s ease 0s;
+  }
+  
+  
+  
+  .product-grid .product-links li a:hover{
+      color: #fff;
+      background-color: #ed1d24;
+  }
+  .product-grid .product-content{
+      text-align: left;
+      padding: 15px 10px;
+  }
+  .product-grid .rating{
+      padding: 0;
+      margin: 0 0 7px;
+      list-style: none;
+  }
+  .product-grid .rating li{
+      color: #f7bc3d;
+      font-size: 13px;
+  }
+  .product-grid .rating li.far{ color: #777; }
+  .product-grid .title{
+      font-size: 16px;
+      font-weight: 600;
+      text-transform: capitalize;
+      margin: 0 0 6px;
+  }
+  .product-grid .title a{
+      color: #555;
+      transition: all 0.3s ease 0s;
+  }
+  .product-grid .title a:hover{ color: #ed1d24; }
+  .product-grid .price{
+      color: #ed1d24;
+      font-size: 18px;
+      font-weight: 700;
+  }
+  @media screen and (max-width:990px){
+      .product-grid{ margin: 0 0 30px; }
+  }
+</style>
+
 
  <!-- Carousel -->
 <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
@@ -50,20 +115,51 @@ span{
     </button>
 </div>
 
-<!-- After Carousel -->
-<div class="text mt-5">
-    <h1 class="display-5 text-center border-bottom "><span> Associated </span> Brands</h1>
-</div>
-<div class="container flex mt-4">
-    <div class="card" style="width: 25rem;">
-        <%= image_tag('img/nb.png', class: 'card-img-top shadow')%>
-    </div>
-    <div class="card " style="width: 25rem;">
-        <%= image_tag('img/nike.jpg', class: 'card-img-top shadow')%>
-    </div>
-    <div class="card" style="width: 25rem;">
-        <%= image_tag('img/prada.jpg', class: 'card-img-top shadow')%>
-    </div>
-</div>
+<%= render 'home/features'%>
+<%= render 'home/deal' %>
 
+
+
+<%= render 'home/products' %>
+<!-- After Carousel -->
+<div class="py-5 bg-light mt-4 shadow ">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-10 mx-auto">
+          <div class="row">
+            <div class="col-md-4 ml-auto">
+              <h2>Associated<br>Brands</h2>
+            </div>
+            <div class="col-md-6 mr-auto">
+              <p class="lead text-dark">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab consectetur nostrum quidem provident ipsam, autem explicabo eaque incidunt ipsum quam.
+              </p>
+            </div>
+          </div>
+          <div class="row align-items-center my-md-4">
+            <div class="col">
+              <%= image_tag('img/nike.webp', class:'img-fluid p-md-2')%>
+            </div>
+            <div class="col">
+                <%= image_tag('img/prada.png', class:'img-fluid p-md-2')%>
+            </div>
+            <div class="col">
+                <%= image_tag('img/nb.png', class:'img-fluid p-md-2')%>
+            </div>
+            <div class="col">
+                <%= image_tag('img/gucci.png', class:'img-fluid p-md-2')%>
+            </div>
+            <div class="col">
+                <%= image_tag('img/cd.svg', class:'img-fluid p-md-2')%>
+            </div>
+            <div class="col">
+                <%= image_tag('img/versache.png', class:'img-fluid p-md-2')%>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+<%= render 'home/happy_costumers' %>
+<%= render 'home/trial' %>
 

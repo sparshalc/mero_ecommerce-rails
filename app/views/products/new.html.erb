@@ -1,0 +1,39 @@
+<div class="container mt-5 shadow">
+    <main class="main" role="main">
+        <div class="bg-white">
+
+        <div class="container-fluid p-0">
+            <div class="row no-gutters">
+            <div class="col-12 col-sm-6 order-sm-2 bg-white d-flex justify-content-center align-items-center">
+                <%= image_tag('img/product.webp', class:'img-fluid img-cover shadow-sm')%>
+            </div>
+
+                <div class="col-12 col-sm-6 order-sm-1 bg-light d-flex position-relative justify-content-center align-items-center">
+                    <div class="p-3 p-md-4 p-lg-8 w-100">
+
+                    <h1 class="display-4 mb-2">Add Products</h1>
+                    <p class="lead"></p>
+                    <%= form_with model: @product do |x|%>
+                        <div class="input-group-lg mb-2 ">
+                            <%= x.text_field :name, class:'form-control', placeholder: 'Product Name...'%>
+                            <%= x.text_field :oriprice, class:'form-control mt-2', placeholder: 'Original Price...'%>
+                            <%= x.text_field :disprice, class:'form-control mt-2', placeholder: 'Discounted Name...'%>
+                            <%= x.text_field :brand, class:'form-control mt-2', placeholder: 'Product Brand...'%>
+                            <%= x.text_field :category, class:'form-control mt-2', placeholder: 'Product Category...'%>
+                            <%= x.file_field :image, class:'form-control mt-2', placeholder: 'Product Image...'%>
+                            <div class="input-group-append mt-3">
+                            <%= x.submit 'Add Product', class: 'btn btn-primary'%>
+                            <%= link_to 'Back', :back, class: 'btn btn-primary'%>
+                            </div>
+                        </div>
+                    <% end %>
+                    </div>
+                </div>
+                </div>
+        </div>
+        </div>
+
+    </main>
+</div>
+
+

@@ -1,0 +1,70 @@
+<style>
+    .jumb{
+      background-color: #212529;
+      padding: 15px;
+    }
+      .thumbnail{
+          height: 180px;
+          width: auto;
+          margin: 10px 10px ;
+  
+      }
+      .card:hover{
+       box-shadow: 2px 2px 3px #000000;
+      }
+      .card{
+          margin: 15px;
+          width: 150px;
+          height: auto;
+      }
+      .thumbnails{
+          display: flex;
+          justify-content: center;
+          text-align: center;
+      }
+  
+      .cards{
+          overflow: hidden;
+          display: flex;
+          flex-wrap: wrap;
+      }
+      .cont{
+          background-color: #212529;
+          padding: 15px 15px;
+          margin: 15px 15px;
+          border-radius: 15px;
+          color: white;
+      }
+      .conte{
+          background-color: #212529;
+          padding: 55px;
+          margin: 15px 15px;
+          border-radius: 15px;
+          color: white;
+      }
+</style>
+<% if @product.present? %>
+  <h3 class="title text-center mt-3 border-bottom p-3">New Products</h3>
+ <% else %>
+ <h1 class="display-5  lh-1 mb-3 mt-4 text-center "><%= image_tag('img/alert.png',width: '70px')%>
+  No Produts Found!</h1>
+ <% end %>
+
+<div class="container">
+  <%= turbo_frame_tag :results do%>
+    <div class="cards my-4">
+            <% @product.each do |x|%>
+            <div class="card" style="width: 18rem;">
+                <span class="badge bg-danger">Hot Sale</span>
+                <div class="thumbnails">
+                    <%= link_to image_tag(x.image, class: 'thumbnail'), product_path(x.id)%>
+                </div>
+            <div class="text-center">
+                <p><%= x.name %></p>
+                <p><strike class="text-muted">$<%= x.oriprice %></strike>    $<%= x.disprice %></p>
+            </div>
+            </div>
+            <% end %>
+        </div>
+  <% end %>
+</div>

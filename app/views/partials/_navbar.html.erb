@@ -40,6 +40,7 @@
             <ps class="text-muted"><%= current_user.roles.collect(&:name).join(', ') %></ps>
           </a>
           <ul class="dropdown-menu text-large">
+
             <li><%= link_to 'Edit', main_app.edit_user_registration_path,class:"dropdown-item"%></li>
             <li> <%= button_to 'Logout',main_app.destroy_user_session_path,class:'dropdown-item text-danger',method: :delete%></li>
 
@@ -51,11 +52,10 @@
 <% else %>
 <header class="p-3  border-bottom">
   <div class="container">
-    <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-      <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 link-body-emphasis text-decoration-none">
-        <%= image_tag('img/logo.png', width: '300px')%>
-      </a>
+    <div class="d-flex flex-wrap align-items-center justify-content-center">
+        <%= image_tag('img/logo.png', width: '250px ')%>
     </div>
   </div>
+
 </header>
 <% end %>

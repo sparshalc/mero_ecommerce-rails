@@ -60,7 +60,8 @@
 </div>
 
 <div class="text text-center mt-3">
-    <h1 class="h3 mb-0 text-gray-500 shadow p-3">Manage <span> Users</span></h1></div>
+    <h1 class="h3 mb-0 text-gray-500 shadow-sm p-3">Manage <span> Users</span></h1>
+</div>
 <div class="d-sm-flex flex-sm-column mt-4">
     <div class="row flex-sm-fill">
     <% @user.each do |x|%>
@@ -78,7 +79,8 @@
                 <span class="avatar-child avatar-badge bg-success"></span>
                 </div>
                 <h5 class="h6 mt-4 mb-0"><%= x.email %></h5>
-                <a class="d-block text-sm text-muted mb-3">Joined <%= time_ago_in_words(x.created_at)+ ' ago'%></a>
+                <a class="d-block text-sm text-muted">Joined <%= time_ago_in_words(x.created_at)+ ' ago'%></a>
+                <p class="text-muted">(<%= x.roles.collect(&:name).join(', ') %>)</p>
                 <div class="d-flex justify-content-center px-4 gap-2">
                     <%= button_to 'Delete User', admin_path(x.id), method: :delete, class:'btn btn-danger'%>
                 </div>
