@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root 'home#index'
   resources :admin,only: [:index, :destroy]
-  resources :products, except: [:index]
+  resources :products
   devise_for :users, :controllers => {
     registrations: 'users/registrations'
   }

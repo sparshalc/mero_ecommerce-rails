@@ -20,6 +20,7 @@
                             <%= x.text_field :disprice, class:'form-control mt-2', placeholder: 'Discounted Name...'%>
                             <%= x.text_field :brand, class:'form-control mt-2', placeholder: 'Product Brand...'%>
                             <%= x.text_field :category, class:'form-control mt-2', placeholder: 'Product Category...'%>
+                            <%= x.number_field :user_id, value: current_user.id,id: 'product_user_id', type: :hidden,class: 'form-control'%>
                             <%= x.file_field :image, class:'form-control mt-2', placeholder: 'Product Image...'%>
                             <div class="input-group-append mt-3">
                             <%= x.submit 'Add Product', class: 'btn btn-primary'%>

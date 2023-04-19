@@ -46,8 +46,8 @@
 <% if @product.present? %>
   <h3 class="title text-center mt-3 border-bottom p-3">New Products</h3>
  <% else %>
- <h1 class="display-5  lh-1 mb-3 mt-4 text-center "><%= image_tag('img/alert.png',width: '70px')%>
-  No Produts Found!</h1>
+ <h1 class="display-5  lh-1 mb-3 mt-4 text-center shadow p-3 "><%= image_tag('img/alert.jpg',width: '180px')%>
+  No Products Here!</h1>
  <% end %>
 
 <div class="container">
@@ -55,10 +55,16 @@
     <div class="cards my-4">
             <% @product.each do |x|%>
             <div class="card" style="width: 18rem;">
-                <span class="badge bg-danger">Hot Sale</span>
-                <div class="thumbnails">
-                    <%= link_to image_tag(x.image, class: 'thumbnail'), product_path(x.id)%>
-                </div>
+                <% if x.views > 15 %>
+                 <span class="badge bg-danger">Trending</span>
+                <% else %>
+                    <span class="badge bg-primary">Newly Added</span>
+                <% end %>
+                <% if x.image.attached? %>
+                    <div class="thumbnails">
+                        <%= link_to image_tag(x.image, class: 'thumbnail'), product_path(x.id)%>
+                    </div>
+                <% end %>
             <div class="text-center">
                 <p><%= x.name %></p>
                 <p><strike class="text-muted">$<%= x.oriprice %></strike>    $<%= x.disprice %></p>

@@ -1,5 +1,7 @@
 class ProductsController < ApplicationController
-    before_action :set_product,only: [:edit,:update,:view,:destroy, :show]
+    before_action :set_product,only: [:view,:destroy, :show]
+    before_action :correct_user,only: [:edit,:update,:destroy]
+
     def index
         @product = Product.all
     end
@@ -13,23 +15,32 @@ class ProductsController < ApplicationController
         end
     end
     def show
+        @product.update(views: @product.views + 1)
     end
     def edit
+        @product = Product.find_by(id: params[:id])
     end
     def update
+        @product = Product.find_by(id: params[:id])
         if @product.update(product_params)
             redirect_to product_path(@product),notice: 'Product Updated!'
         end
     end
     def destroy
         if @product.destroy
-            redirect_to products_path,alert: 'Product Deleted!'
+            redirect_to root_path,alert: 'Product Deleted!'
         end
     end
 
     private
+    def correct_user
+        @product = current_user.products.find_by(id: params[:id])
+        unless current_user.has_role?(:admin) || @product.nil?
+            redirect_to root_path,alert: 'Not Authorized!'
+        end
+    end
     def product_params
-        params.require(:product).permit(:name, :oriprice, :disprice, :brand, :category, :image)
+        params.require(:product).permit(:name, :oriprice, :disprice, :brand, :category, :image, :user_id)
     end
     def set_product
         @product = Product.find_by(id: params[:id])

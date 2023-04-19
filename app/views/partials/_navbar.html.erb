@@ -7,7 +7,8 @@
         </a>
 
         <ul class="nav col-12 col-lg-auto me-lg-auto mx-auto justify-content-center mb-md-0">
-            <li><a class="dropdown-item mx-4" href="/">Home</a></li>
+            <li><a class="dropdown-item mx-3" href="/">Home</a></li>
+            <li><a class="dropdown-item mx-3" href="/products/new">Add Product</a></li>
         <div class="dropdown nav col-12 col-lg-auto me-lg-auto mx-auto justify-content-center mb-md-0">
             <a class="dropdown-item" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Categories
@@ -20,7 +21,7 @@
             </ul>
         </div>
         <% if current_user.has_role? :admin%>
-        <li><%= link_to 'Dashboard', admin_index_path, class:"dropdown-item mx-4"%></li>
+        <li><%= link_to 'Dashboard', admin_index_path, class:"dropdown-item mx-3"%></li>
         <% end %>
         </ul>
 
