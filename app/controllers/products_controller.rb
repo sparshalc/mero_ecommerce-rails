@@ -16,6 +16,8 @@ class ProductsController < ApplicationController
     end
     def show
         @product.update(views: @product.views + 1)
+        @comment = @product.comments.order('Created_at DESC')
+
     end
     def edit
         @product = Product.find_by(id: params[:id])
