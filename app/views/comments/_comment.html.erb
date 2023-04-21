@@ -80,27 +80,27 @@
         <div class="col-md-12">
           <% @comment.each do |x|%>
             <div class="card">
-                              <div class="card-body">
-                                  <h4 class="card-title">Recent Reviews</h4>
-                                  <h6 class="card-subtitle">Latest Reviews by users</h6> </div>
+                <div class="card-body">
+                    <h4 class="card-title">Recent Reviews</h4>
+                    <h6 class="card-subtitle">Latest Reviews by users</h6> </div>
 
-                              <div class="comment-widgets m-b-20">
+                <div class="comment-widgets m-b-20">
 
-                                  <div class="d-flex flex-row comment-row">
-                                      <div class="p-2"><span class="round">
-                                        <% if x.user.image.attached? %>
-                                          <%= image_tag(x.user.image, width: '50')%></span></div>
-                                        <% else %>
-                                          <%= image_tag('img/user.png', width: '50')%></span></div>
-                                        <% end %>
-                                      <div class="comment-text w-100">
-                                          <h6><%= x.user.email %>  |   Commented <%= time_ago_in_words(x.created_at) + ' ago'%></h6>
-                                          <h5><%= x.title %></h5>
+                    <div class="d-flex flex-row comment-row">
+                        <div class="p-2"><span class="round">
+                        <% if x.user.image.attached? %>
+                            <%= image_tag(x.user.image, class: 'rounded-circle', width: '60')%></span></div>
+                        <% else %>
+                            <%= image_tag('img/user.png', width: '50')%></span></div>
+                        <% end %>
+                        <div class="comment-text w-100">
+                            <h6><%= x.user.email %>  |   Commented <%= time_ago_in_words(x.created_at) + ' ago'%></h6>
+                            <h5><%= x.title %></h5>
 
-                                          <p class="m-b-5 m-t-10 text-muted">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it</p>
-                                      </div>
-                                      <%= button_to 'Delete', [x.product, x], class: 'btn btn-danger btn-sm ',method: :delete, data: {'turbo-method': :delete}, data: { turbo: "false" } if x.user_id == current_user.id%>
-                                  </div>
+                            <p class="m-b-5 m-t-10 text-muted">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it</p>
+                        </div>
+                        <%= button_to 'Delete', [x.product, x], class: 'btn btn-danger btn-sm ',method: :delete, data: {'turbo-method': :delete}, data: { turbo: "false" } if x.user_id == current_user.id%>
+                    </div>
         </div>
             </div>
           <% end %>

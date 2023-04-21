@@ -1,9 +1,12 @@
 class ProductsController < ApplicationController
     before_action :set_product,only: [:view,:destroy, :show]
     before_action :correct_user,only: [:edit,:update,:destroy]
+    before_action :set_search
 
     def index
         @product = Product.all
+        @q = Product.ransack(params[:q])
+        @product = @q.result(distinct: true)
     end
     def new
         @product = Product.new
