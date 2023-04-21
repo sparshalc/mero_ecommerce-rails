@@ -45,9 +45,12 @@
           border-radius: 15px;
           color: white;
       }
+      .big{
+    color: #fb611b;
+}
 </style>
 <% if @product.present? %>
-  <h3 class="title text-center mt-3 border-bottom p-3">All Products
+  <h3 class="title text-center mt-3 border-bottom p-3">Men's Fashion Products
     <div class="container col-4 col-lg-3 mt-3">
         <form role="search">
             <%= search_form_for @q do |f| %>

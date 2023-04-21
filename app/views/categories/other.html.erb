@@ -7,8 +7,10 @@
           height: 180px;
           width: auto;
           margin: 10px 10px ;
-  
       }
+      .big{
+    color: #fb611b;
+}
       .card:hover{
        box-shadow: 2px 2px 3px #000000;
       }
@@ -47,7 +49,7 @@
       }
 </style>
 <% if @product.present? %>
-  <h3 class="title text-center mt-3 border-bottom p-3">All Products
+  <h3 class="title text-center mt-3 border-bottom p-3">All others Products
     <div class="container col-4 col-lg-3 mt-3">
         <form role="search">
             <%= search_form_for @q do |f| %>

@@ -30,7 +30,7 @@
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                             Products Added</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"><%= @product.all.count%></div>
                     </div>
                     <div class="col-auto">
                         <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -83,6 +83,39 @@
                 <p class="text-muted">(<%= x.roles.collect(&:name).join(', ') %>)</p>
                 <div class="d-flex justify-content-center px-4 gap-2">
                     <%= button_to 'Delete User', admin_path(x.id), method: :delete, class:'btn btn-danger'%>
+                </div>
+            </div>
+            </div>
+        </div>
+    <% end %>
+    </div>
+  </div>
+</div>
+
+
+<div class="text text-center mt-3">
+    <h1 class="h3 mb-0 text-gray-500 shadow-sm p-3">Manage <span> Products</span></h1>
+</div>
+<div class="d-sm-flex flex-sm-column mt-4">
+    <div class="row flex-sm-fill">
+    <% @product.each do |x|%>
+        <div class="col-sm-4 mt-2">
+            <div class="card card-fluid">
+            <div class="card-body text-center">
+                <div class="avatar-parent-child">
+                <a  class="avatar avatar-lg rounded-circle">
+                    <% if x.image.attached? %>
+                        <%= image_tag(x.image, width:"82", height:"82", class:"rounded-circle")%>
+                    <% else %>
+                    <%= image_tag('img/user.png', width:"82", height:"82", class:"rounded-circle")%>
+                    <% end %>
+                </a>
+                <span class="avatar-child avatar-badge bg-success"></span>
+                </div>
+                <h5 class="h6 mt-4 mb-0"><%= x.name %></h5>
+                <a class="d-block text-sm text-muted">Added <%= time_ago_in_words(x.created_at)+ ' ago'%></a>
+                <div class="d-flex justify-content-center px-4 gap-2">
+                    <%= link_to 'View Product', product_path(x.id) ,class:'btn btn-primary'%>
                 </div>
             </div>
             </div>

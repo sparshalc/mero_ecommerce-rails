@@ -2,6 +2,7 @@ class AdminController < ApplicationController
   before_action :verify_admin
   def index
     @user = User.all
+    @product = Product.all
   end
   def destroy
     user = User.find(params[:id])

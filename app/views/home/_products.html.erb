@@ -74,7 +74,9 @@
         </div>
         <% end %>
     </div>
-    <div class="container text-center">
-        <%= link_to 'LOAD MORE', products_path,class: 'btn btn-primary w-100'%>
-    </div>
+    <% if @product.present? %>
+        <div class="container text-center">
+            <%= link_to 'LOAD MORE', products_path,class: 'btn btn-primary w-100'%>
+        </div>
+    <% end %>
 </div>

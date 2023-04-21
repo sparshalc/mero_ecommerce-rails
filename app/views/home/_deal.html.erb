@@ -4,10 +4,10 @@
       <div class="col-lg-6">
         <div class="new_product">
           <div class="product-img">
-            <%= image_tag('img/fur.jpg', class:'img-fluid w-500')%>
+            <%= link_to image_tag('img/fur.jpg', class:'img-fluid w-500'), categories_other_path%>
         </div>
         <div class="product-btm">
-          <p class="text-muted">Furniture & Decor</p>
+          <p class="text-muted">Furnitures</p>
         </div>
         </div>
       </div>
@@ -17,7 +17,7 @@
           <div class="col-lg-6 col-md-6">
             <div class="single-product">
               <div class="product-img">
-                <%= image_tag('img/men.jpg', class:'img-fluid w-100')%>
+                <%= link_to image_tag('img/men.jpg', class:'img-fluid w-100'), categories_mens_fashion_path%>
               </div>
               <div class="product-btm">
                 <p class="text-muted">Mens Fashion</p>
@@ -28,7 +28,7 @@
           <div class="col-lg-6 col-md-6">
             <div class="single-product">
               <div class="product-img">
-                <%= image_tag('img/women.jpg', class:'img-fluid w-100')%>
+                <%= link_to image_tag('img/women.jpg', class:'img-fluid w-100'), categories_womens_fashion_path%>
               </div>
               <div class="product-btm">
                 <p class="text-muted">Women's Fashion</p>
@@ -39,11 +39,11 @@
           <div class="col-lg-6 col-md-6 mt-1">
             <div class="single-product">
               <div class="product-img">
-                <%= image_tag('img/child.webp', class:'img-fluid w-100')%>
+                <%= link_to image_tag('img/food.jpg', class:'img-fluid w-100'), categories_other_path%>
 
               </div>
               <div class="product-btm">
-                <p class="text-muted">Children Fashion</p>
+                <p class="text-muted">Foods</p>
               </div>
             </div>
           </div>
@@ -51,11 +51,11 @@
           <div class="col-lg-6 col-md-6 mt-4">
             <div class="single-product">
               <div class="product-img">
-                <%= image_tag('img/food.png', class:'img-fluid w-100')%>
+                <%=link_to image_tag('img/ea.jpeg', class:'img-fluid w-100'), categories_electronics_path%>
 
               </div>
               <div class="product-btm">
-                <p class="text-muted">Food & Beverage</p>
+                <p class="text-muted">Electronics Appliances</p>
               </div>
             </div>
           </div>
