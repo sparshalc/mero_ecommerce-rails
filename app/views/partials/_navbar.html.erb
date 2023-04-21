@@ -15,9 +15,10 @@
               </a>
               
               <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">Mens Fashion</a></li>
-                  <li><a class="dropdown-item" href="#">Women's Fashion</a></li>
-                  <li><a class="dropdown-item" href="#">Electronics</a></li>
+                  <li><%= link_to "Men's Fashion", categories_mens_fashion_path, class:'dropdown-item'%></li>
+                  <li><%= link_to "Women's Fashion", categories_womens_fashion_path, class:'dropdown-item'%></li>
+                  <li><%= link_to "Electronics", categories_electronics_path, class:'dropdown-item'%></li>
+                  <li><%= link_to "Other Product", categories_other_path, class:'dropdown-item'%></li>
               </ul>
           </div>
           <% if current_user.has_role? :admin%>

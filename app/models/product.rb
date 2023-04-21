@@ -11,4 +11,10 @@ class Product < ApplicationRecord
     has_many :comments,dependent: :destroy
 
 
+    validates :name,presence: true
+    validates :oriprice,presence: true
+    validates :disprice,presence: true
+    validates :category,presence: true
+    validates :image,presence: true
+
 end

@@ -3,6 +3,8 @@ class ProductsController < ApplicationController
     before_action :correct_user,only: [:edit,:update,:destroy]
     before_action :set_search
 
+
+
     def index
         @product = Product.all
         @q = Product.ransack(params[:q])
@@ -15,6 +17,8 @@ class ProductsController < ApplicationController
         @product = Product.create(product_params)
         if @product.save
             redirect_to product_path(@product),notice: 'Product added successfully'
+        else
+            render :new,status: :bad_request
         end
     end
     def show
@@ -29,6 +33,8 @@ class ProductsController < ApplicationController
         @product = Product.find_by(id: params[:id])
         if @product.update(product_params)
             redirect_to product_path(@product),notice: 'Product Updated!'
+        else
+            render :edit,status: :bad_request
         end
     end
     def destroy
