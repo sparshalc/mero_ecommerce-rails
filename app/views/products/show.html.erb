@@ -2,6 +2,9 @@
 .card {
     margin-bottom: 30px;
 }
+.input-flex{
+    display: flex;
+}
 .card {
     position: relative;
     display: flex;
@@ -50,18 +53,34 @@ small{
                     <h4 class="box-title mt-5">Product description</h4>
                     <p>Lorem Ipsum available,but the majority have suffered alteration in some form,by injected humour,or randomised words which don't look even slightly believable.but the majority have suffered alteration in some form,by injected humour</p>
                     <h2 class="mt-2">
-                        <span class="big">$<%= @product.disprice%></span><small><strike>($<%= @product.oriprice%>) </strike></small>
+                        <span class="big">रू <%= @product.disprice%></span><small><strike>(रू <%= @product.oriprice%>) </strike></small>
                     </h2>
-                    <br>
+                    
+                        <div class="input-group mb-2 mt-2">
+                            <%= form_with(url: cart_add_path) do |f|%>
+                            <%= f.hidden_field :id, value: @product.id %>
+                            <%= f.number_field :quantity, value: 0,min: 1, class: 'form-control' %>
+                            <%= f.submit "Add to cart", class: 'btn btn-dark mt-2',method: :post, data: {'turbo-method': :post}, data: { turbo: "false" }%>
+                         <% end %>
+                        </div>
                     <% if current_user.has_role? :admin || current_user.id == @product.user.id%>    
-                        <div class="d-grid  justify-content-md-start ">
-                            <%= button_to 'Delete Product', product_path(@product), method: :delete,class:'btn btn-danger'%>
-                            <%= link_to 'Edit', edit_product_path(@product),class:'btn btn-dark '%>
+                        <div class="input-flex gap-1">
+                            <p><%= link_to root_path, class:'btn btn-primary' do %>
+                            <i class="fa fa-lg fa-arrow-left"></i>
+                            <% end %></p>
+                           <p> <%= link_to edit_product_path(@product), class:'btn btn-primary' do %>
+                            <i class="fa fa-lg fa-wrench"></i>
+                            <% end %>
+                            <%= button_to product_path(@product), method: :delete, class:'btn btn-danger' do%>
+                                <i class="fa fa-lg fa-trash"></i>
+                            <% end %>
                         </div>
                     <% else %>
-                    <%= link_to 'View', root_path, class:'btn btn-primary'%>
+                    <p><%= link_to root_path, class:'btn btn-primary' do %>
+                        <i class="fa fa-lg fa-arrow-left"></i>
+                    <% end %></p>
                     <% end %>
-                    <h3 class="box-title mt-5">Key Highlights</h3>
+                    <h3 class="box-title mt-1">Key Highlights</h3>
                     <p>100% Original Products</p>
                     <p>Pay on delivery might be available</p>
                     <p>Easy 14 days returns and exchanges</p>

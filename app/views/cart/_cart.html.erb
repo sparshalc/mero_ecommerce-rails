@@ -1,0 +1,18 @@
+   <% if @cart.orderables.count > 0 %>
+   <h3 class="title text-center mt-3 border-bottom p-3"><%= current_user.email%>'s Cart</h3>
+   <div class="text my-1">
+    <%= render 'cart/orderables'%>
+      </div>
+      <div class="container ">
+        </div>
+    <% else %>
+      <div class="container text-center">
+        <hr>
+      <span class="text-center display-6 my-4">Your cart is empty!</span>
+      </div>
+  <% end %>
+<br>
+<div class="container">
+<hr>
+</div>
+

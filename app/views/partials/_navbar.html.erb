@@ -1,3 +1,12 @@
+<style>
+  .ab{
+    text-decoration: none;
+    color: black;
+  }
+  .white{
+    color: black;
+  }
+</style>
 <% if user_signed_in? %>
   <header class="p-3  border-bottom">
       <div class="container">
@@ -22,9 +31,8 @@
               </ul>
           </div>
           <li><a class="dropdown-item mx-3" href="/products/new">Add Product</a></li>
-
-
           </ul>
+
           <div class="dropdown text-end">
             <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
               <% if current_user.image.attached? %>
@@ -32,7 +40,7 @@
                 <% else %>
                 <%= image_tag('img/user.png', width:"32", height:"32", class:"rounded-circle")%>
               <% end %>
-              <ps class="text-muted"><%= current_user.roles.collect(&:name).join(', ') %></ps>
+              <ps class="text-muted"><%= current_user.roles.collect(&:name).join(', ').upcase() %></ps>
             </a>
             <ul class="dropdown-menu text-large">
               <% if current_user.has_role? :admin%>
@@ -42,6 +50,24 @@
               <li> <%= button_to 'Logout',main_app.destroy_user_session_path,class:'dropdown-item text-danger',method: :delete%></li>
             </ul>
           </div>
+          <div class="m-1">
+            <% if user_signed_in? %>
+            <% if @cart.orderables.count == 0 %>
+            <%= link_to cart_path, class: 'position-relative white' do%>
+            <i class="fa fa-lg fa-shopping-cart"></i>
+            <% end %>
+            <% else %>
+              <%= link_to cart_path, class: 'position-relative white' do%>
+                <i class="fa fa-lg fa-shopping-cart"></i>
+                  <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                    <%= @cart.orderables.count%>
+                    <span class="visually-hidden">unread messages</span>
+                  </span>
+              <% end %>
+            <% end %>
+            <% end %>
+          </div>
+    
         </div>
       </div>
   </header>

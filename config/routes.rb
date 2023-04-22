@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get 'cart', to: 'cart#show'
+  post 'cart/add'
+  post 'cart/destroy'
   get 'categories/mens_fashion'
   get 'categories/womens_fashion'
   get 'categories/electronics'

@@ -9,7 +9,8 @@ class Product < ApplicationRecord
     belongs_to :user
     has_one_attached :image
     has_many :comments,dependent: :destroy
-
+    has_many :orderables
+    has_many :carts,through: :orderables
 
     validates :name,presence: true
     validates :oriprice,presence: true
