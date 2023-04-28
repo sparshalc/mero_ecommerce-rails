@@ -24,10 +24,10 @@
               </a>
               
               <ul class="dropdown-menu">
-                  <li><%= link_to "Men's Fashion", categories_mens_fashion_path, class:'dropdown-item'%></li>
-                  <li><%= link_to "Women's Fashion", categories_womens_fashion_path, class:'dropdown-item'%></li>
-                  <li><%= link_to "Electronics Accessories ", categories_electronics_path, class:'dropdown-item'%></li>
-                  <li><%= link_to "Other Product", categories_other_path, class:'dropdown-item'%></li>
+                  <li><%= link_to "Men's Fashion", main_app.categories_mens_fashion_path, class:'dropdown-item'%></li>
+                  <li><%= link_to "Women's Fashion", main_app.categories_womens_fashion_path, class:'dropdown-item'%></li>
+                  <li><%= link_to "Electronics Accessories ", main_app.categories_electronics_path, class:'dropdown-item'%></li>
+                  <li><%= link_to "Other Product", main_app.categories_other_path, class:'dropdown-item'%></li>
               </ul>
           </div>
           <li><a class="dropdown-item mx-3" href="/products/new">Add Product</a></li>
@@ -35,39 +35,70 @@
 
           <div class="dropdown text-end">
             <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-              <% if current_user.image.attached? %>
-                <%= image_tag(current_user.image, width:"32", height:"32", class:"rounded-circle")%>
-                <% else %>
-                <%= image_tag('img/user.png', width:"32", height:"32", class:"rounded-circle")%>
+              <% if params[:controller] == 'home' && params[:action] == 'index' %>
+                <% if current_user.image.attached? %>
+                  <%= image_tag(current_user.image, width:"32", height:"32", class:"rounded-circle")%>
+                  <% else %>
+                  <%= image_tag('img/user.png', width:"32", height:"32", class:"rounded-circle")%>
+                <% end %>
               <% end %>
               <ps class="text-muted"><%= current_user.roles.collect(&:name).join(', ').upcase() %></ps>
             </a>
             <ul class="dropdown-menu text-large">
               <% if current_user.has_role? :admin%>
-              <li><%= link_to 'Dashboard ', admin_index_path, class:"dropdown-item "%></li>
+              <li><%= link_to 'Dashboard ', main_app.admin_index_path, class:"dropdown-item "%></li>
               <% end %>
               <li><%= link_to 'Edit', main_app.edit_user_registration_path,class:"dropdown-item"%></li>
               <li> <%= button_to 'Logout',main_app.destroy_user_session_path,class:'dropdown-item text-danger',method: :delete%></li>
             </ul>
           </div>
-          <div class="m-1">
+          <div class="m-2">
             <% if user_signed_in? %>
             <% if @cart.orderables.count == 0 %>
-            <%= link_to cart_path, class: 'position-relative white' do%>
-            <i class="fa fa-lg fa-shopping-cart"></i>
-            <% end %>
-            <% else %>
-              <%= link_to cart_path, class: 'position-relative white' do%>
-                <i class="fa fa-lg fa-shopping-cart"></i>
-                  <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                    <%= @cart.orderables.count%>
-                    <span class="visually-hidden">unread messages</span>
-                  </span>
+              <%= link_to main_app.cart_path, class: 'position-relative white' do%>
+              <i class="fa fa-lg fa-shopping-cart"></i>
+              <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                <%= @cart.orderables.count%>
+                <span class="visually-hidden">unread messages</span>
+              </span>
+              <% end %>
+              <% else %>
+                <%= link_to cart_path, class: 'position-relative white' do%>
+                  <i class="fa fa-lg fa-shopping-cart"></i>
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                      <%= @cart.orderables.count%>
+                      <span class="visually-hidden">unread messages</span>
+                    </span>
+                <% end %>
               <% end %>
             <% end %>
-            <% end %>
           </div>
-    
+          <div class="m-2">
+              <% if user_signed_in? and current_user.has_role? :admin %>
+              <% if (Notification.unread_count(current_user)) == 0 %>
+                <%= link_to notifications_path, class: 'position-relative white' do%> 
+                  <i class="fas fa-bell fa-lg"></i>           
+                  <span class="position-absolute top-0 start-100 translate-middle rounded-pill bg-danger">
+                  </span>
+                <% end %>
+              <% elsif (Notification.unread_count(current_user)) < 9  %>
+              <%= link_to notifications_path, class: 'position-relative white' do%> 
+              <i class="fas fa-bell fa-lg"></i>           
+              <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                <%= Notification.unread_count(current_user) %>
+              </span>
+              <% end %>
+              <% else (Notification.unread_count(current_user)) > 9  %>
+              <%= link_to notifications_path, class: 'position-relative white' do%> 
+              <i class="fas fa-bell fa-lg"></i>           
+              <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                9+
+              </span>
+            <% end %>
+              <% end %>
+          <% end %>
+        </div>
+
         </div>
       </div>
   </header>

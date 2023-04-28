@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  mount Notifications::Engine => "/notifications"
   get 'cart', to: 'cart#show'
   post 'cart/add'
   post 'cart/destroy'
@@ -10,6 +11,7 @@ Rails.application.routes.draw do
   resources :admin,only: [:index, :destroy]
   resources :products do
     resources :comments
+    resources :notifications
   end
   devise_for :users, :controllers => {
     registrations: 'users/registrations'

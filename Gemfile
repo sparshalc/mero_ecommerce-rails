@@ -33,6 +33,8 @@ gem 'ransack'
 
 gem 'devise'
 
+gem 'notifications', '~> 1.1'
+
 gem "rolify"
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"

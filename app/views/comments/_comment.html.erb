@@ -78,14 +78,13 @@
   <div class="container d-flex justify-content-center mt-4 mb-100 shadow">
     <div class="row">
         <div class="col-md-12">
-          <% @comment.each do |x|%>
+
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">Recent Reviews</h4>
                     <h6 class="card-subtitle">Latest Reviews by users</h6> </div>
-
-                <div class="comment-widgets m-b-20">
-
+                    <% @comment.each do |x|%>
+                    <div class="comment-widgets m-b-20">
                     <div class="d-flex flex-row comment-row">
                         <div class="p-2"><span class="round">
                         <% if x.user.image.attached? %>

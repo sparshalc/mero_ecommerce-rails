@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
     before_action :initialize_cart
     before_action :authenticate_user!
 
+
     def set_search
         @q = Product.ransack(params[:q])
     end
