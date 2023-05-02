@@ -4,7 +4,7 @@ class Orderable < ApplicationRecord
 
   
   def total
-    product.oriprice.to_i*quantity
+    product.disprice.to_i*quantity
   end
 
 end
